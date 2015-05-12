@@ -1,0 +1,136 @@
+	/*
+		Map<Integer,Integer> map_pop = reader.getPop(); 
+		
+		for (Map.Entry<Integer,Integer> entry : map_pop.entrySet()) {
+	
+		  System.out.println(entry.getKey() + ", "+ entry.getValue());
+		}*/
+		
+		/*
+		Map<Integer,ArrayList<Double>> temp = reader.getmap();
+		
+		PrintWriter writer = new PrintWriter("test-ap-01.txt", "UTF-8");
+writer.println("The first line");
+
+		
+	int tempi = 0;
+		for (Map.Entry<Integer,ArrayList<Double>> entry : temp.entrySet()) {
+			tempi +=1;
+			String temp1 = "";
+			for (int i =0;i<entry.getValue().size();i++) {
+				
+				temp1 += entry.getValue().get(i)+", "; 
+			}
+		  writer.println(entry.getKey() + ", " + temp1);
+		}
+		System.out.println("Run times");
+		System.out.println(tempi);
+		writer.close();
+		*/
+		//Mean
+		/*
+		for (Map.Entry<Integer,ArrayList<Double>> entry : temp.entrySet()) {
+			Double temp1 = 0.0;
+			for (int i =0;i<entry.getValue().size();i++) {
+				
+				temp1 += entry.getValue().get(i); 
+			}
+		  System.out.println(entry.getKey() + ", " + temp1/entry.getValue().size());
+		}*/
+		
+		// actor and director count
+		/*
+		Casebase cb = reader.getCasebase();
+		Map<String,Integer> dir_mov = new HashMap<String,Integer>();
+		Set<Integer> ids = cb.getIds();
+		for (Integer movieId: ids){
+			Set<String> Actors = cb.getCase(movieId).getActors();
+			for(String director : Actors)
+			if(dir_mov.containsKey(director)){
+				dir_mov.put(director, dir_mov.get(director)+1);
+			}else{
+				dir_mov.put(director, 1);
+			}
+		}
+		
+		for (Map.Entry<String,Integer> entry : dir_mov.entrySet()) {
+	
+		  System.out.println(entry.getKey() + ", " + entry.getValue());
+		}
+		*/
+		/*
+		Casebase cb = reader.getCasebase();
+		Map<String,Integer> dir_mov = new HashMap<String,Integer>();
+		Set<Integer> ids = cb.getIds();
+		for (Integer movieId: ids){
+			Set<String> genres = cb.getCase(movieId).getGenres();
+			for(String genre : genres){
+			if(dir_mov.containsKey(genre)){
+				dir_mov.put(genre, dir_mov.get(genre)+1);
+			}else{
+				dir_mov.put(genre, 1);
+			}}
+		}
+		
+		for (Map.Entry<String,Integer> entry : dir_mov.entrySet()) {
+	
+		  System.out.println(entry.getKey() + ", " + entry.getValue());
+		}
+		*/
+		/*
+		Map<Integer,ArrayList<Double>> temp = reader.getmap();
+		Map<Integer,Double> ratings = new HashMap<Integer,Double>();
+		for (Map.Entry<Integer,ArrayList<Double>> entry : temp.entrySet()) {
+			double temp1 = 0.0;
+			for (int i =0;i<entry.getValue().size();i++) {
+				
+				temp1 += entry.getValue().get(i); 
+			}
+		  ratings.put(entry.getKey(),temp1/entry.getValue().size());
+		}
+		
+		Casebase cb = reader.getCasebase();
+		Map<String,ArrayList<Double>> dir_mov = new HashMap<String,ArrayList<Double>>();
+		Set<Integer> ids = cb.getIds();
+		for (Integer movieId: ids){
+			Set<String> genres = cb.getCase(movieId).getGenres();
+			for(String genre : genres){
+			if(dir_mov.containsKey(genre)){
+				ArrayList<Double> temp123 = dir_mov.get(genre);
+				temp123.add(ratings.get(movieId));
+				dir_mov.put(genre,temp123 );
+			}else{
+				dir_mov.put(genre, new ArrayList<Double>());
+				ArrayList<Double> temp123 = dir_mov.get(genre);
+				temp123.add(ratings.get(movieId));
+				dir_mov.put(genre,temp123 );
+			}}
+		}
+		
+		Map<String,ArrayList<Double>> genre_avg = new HashMap<String,ArrayList<Double>>();
+		for (Map.Entry<String,ArrayList<Double>> entry : dir_mov.entrySet()) {
+			double mean = 0.0;
+			for (int i =0;i<entry.getValue().size();i++) {
+				mean += entry.getValue().get(i); 
+			}
+			double run_tot =0;
+			double tot_mean = mean/entry.getValue().size();
+			for (int i =0;i<entry.getValue().size();i++) {
+				run_tot +=(entry.getValue().get(i)-tot_mean)*(entry.getValue().get(i)-tot_mean); 
+			}
+			run_tot = run_tot/entry.getValue().size();
+			run_tot = Math.sqrt(run_tot);
+			ArrayList<Double> mean_sd = new ArrayList<Double>(Arrays.asList(tot_mean,run_tot));
+		  genre_avg.put(entry.getKey(),mean_sd);
+		}
+		
+		for (Map.Entry<String,ArrayList<Double>> entry : genre_avg.entrySet()) {
+			String temp1 = "";
+			for (int i =0;i<entry.getValue().size();i++) {
+				
+				temp1 += entry.getValue().get(i)+", "; 
+			}
+		  System.out.println(entry.getKey() + ", " + temp1);
+		}
+		
+		*/
